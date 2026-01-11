@@ -1,0 +1,43 @@
+:root{--fsrp-red:#b91c1c;--liq:#0b0b0b}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  min-height:250vh;
+  margin:0;
+  background:linear-gradient(to bottom, var(--fsrp-red) 0%, var(--fsrp-red) 35%, var(--liq) 100%);
+  background-attachment:fixed;
+  color:#fff;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+header{box-shadow:0 1px 0 rgba(0,0,0,0.5)}
+section{background:transparent}
+
+/* Ensure links and buttons use red/black scheme */
+a{transition:all .15s ease}
+
+/* Discord button + typing animation */
+.discord-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.25rem .6rem;
+  border-radius:9999px;
+  border:1px solid var(--fsrp-red);
+  background:rgba(0,0,0,0.25);
+  color:var(--bg,white);
+  cursor:pointer;
+  transition:transform .12s ease,background .12s ease,box-shadow .12s ease,color .12s ease;
+  box-shadow:0 4px 10px rgba(0,0,0,0.25);
+}
+.discord-btn:active{transform:translateY(1px)}
+.discord-icon{width:24px;height:24px;flex:0 0 24px}
+.discord-text{
+  display:none; /* don't reserve space when hidden */
+  overflow:hidden;
+  white-space:nowrap;
+  opacity:0;
+  color:#ffffff; /* readable on dark background */
+  font-weight:600;
+}
+.discord-btn:hover{background:var(--fsrp-red);color:black;box-shadow:0 6px 18px rgba(185,28,28,0.25)}
+
