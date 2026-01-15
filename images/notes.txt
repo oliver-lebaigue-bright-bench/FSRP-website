@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" class="dark"> <!-- Default to dark mode -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Florida State Roleplay (FSRP) - Immersive ER:LC Community</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Join Florida State Roleplay (FSRP), an immersive ER:LC community focused on realism, teamwork, and fun. Connect via Discord and start roleplaying today.">
+    <meta name="keywords" content="ER:LC, roleplay, Florida, community, gaming, Discord, immersive">
+    <meta name="author" content="Florida State Roleplay">
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="Florida State Roleplay (FSRP)">
+    <meta property="og:description" content="An immersive ER:LC community for roleplay enthusiasts.">
+    <meta property="og:image" content="images/logo.png">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Florida State Roleplay",
+      "url": "https://yourwebsite.com",
+      "logo": "images/logo.png",
+      "description": "An immersive ER:LC roleplay community."
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <!-- AOS for Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+      /* Custom styles for dark/light mode and animations */
+      html.light-mode { background-color: white; color: black; }
+      html.light-mode .text-white { color: black; }
+      html.light-mode .bg-black\/60 { background-color: rgba(255, 255, 255, 0.9); }
+      html.light-mode .text-red-400 { color: #dc2626; } /* Darker red for contrast */
+      html.light-mode .text-red-200 { color: #991b1b; }
+      html.light-mode .text-gray-200 { color: #374151; }
+      html.light-mode .text-gray-400 { color: #6b7280; }
+      /* Mobile menu styles */
+      .mobile-menu { display: none; }
+      .mobile-menu.open { display: block; }
+      .hamburger { display: none; }
+      @media (max-width: 768px) { .hamburger { display: block; } .nav-links { display: none; } }
+      /* Focus styles for accessibility */
+      a:focus, button:focus { outline: 2px solid #ef4444; outline-offset: 2px; }
+    </style>
+  </head>
+  <body class="text-white antialiased bg-black">
+    <header class="fixed w-full z-30 backdrop-blur bg-black/60 dark:bg-black/60 light:bg-white/90">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-extrabold text-black shadow-md">
+            <img src="images/logo.png" alt="Florida State Roleplay Logo" class="w-full h-full object-contain" loading="lazy">
+          </div>
+          <span class="text-xl font-semibold tracking-wide">Florida State Roleplay</span>
+        </div>
+        <nav class="space-x-6 hidden md:flex items-center nav-links">
+          <a href="#about" class="text-red-400 hover:text-white dark:text-red-400 dark:hover:text-white light:text-red-600 light:hover:text-black" role="menuitem">About</a>
+          <a href="#rules" class="text-red-400 hover:text-white dark:text-red-400 dark:hover:text-white light:text-red-600 light:hover:text-black" role="menuitem">Rules</a>
+          <a href="#" class="discord-btn ml-2 flex items-center gap-2" aria-label="Join our Discord server">
+            <img src="images/discord.png" alt="Discord Icon" class="w-6 h-6 object-contain" loading="lazy">
+            <span class="discord-text">discord</span>
+          </a>
+        </nav>
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" class="ml-4 p-2 rounded bg-gray-700 hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 light:bg-gray-200 light:hover:bg-gray-300" aria-label="Toggle dark mode">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+        </button>
+        <!-- Mobile Hamburger Menu -->
+        <button class="hamburger md:hidden p-2" aria-label="Open mobile menu" aria-expanded="false">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile Menu Dropdown -->
+      <div class="mobile-menu bg-black/90 dark:bg-black/90 light:bg-white/90 md:hidden">
+        <nav class="px-6 py-4 space-y-4">
+          <a href="#about" class="block text-red-400 hover:text-white dark:text-red-400 dark:hover:text-white light:text-red-600 light:hover:text-black" role="menuitem">About</a>
+          <a href="#rules" class="block text-red-400 hover:text-white dark:text-red-400 dark:hover:text-white light:text-red-600 light:hover:text-black" role="menuitem">Rules</a>
+          <a href="#" class="block discord-btn flex items-center gap-2" aria-label="Join our Discord server">
+            <img src="images/discord.png" alt="Discord Icon" class="w-6 h-6 object-contain" loading="lazy">
+            <span class="discord-text">discord</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pt-24">
+      <section class="min-h-screen flex items-center justify-center" data-aos="fade-up">
+        <div class="text-center px-6">
+          <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight" data-aos="fade-in">Florida State Roleplay</h1>
+          <p class="mt-4 text-xl text-red-200 dark:text-red-200 light:text-red-600 max-w-2xl mx-auto" data-aos="fade-in" data-aos-delay="200">An immersive ER:LC community — FSRP</p>
+          <a href="#join" class="mt-8 inline-block bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 light:bg-red-500 light:hover:bg-red-600 text-black font-semibold px-6 py-3 rounded" data-aos="fade-in" data-aos-delay="400">Join Now</a>
+        </div>
+      </section>
+
+      <section id="about" class="py-24" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto px-6">
+          <h2 class="text-3xl font-bold mb-4">About FSRP</h2>
+          <p class="text-gray-200 dark:text-gray-200 light:text-gray-700">We are a roleplay community focusing on realism, teamwork, and fun. Join our Discord and server to get started.</p>
+        </div>
+      </section>
+
+      <section id="rules" class="py-24" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto px-6">
+          <h2 class="text-3xl font-bold mb-4">Rules</h2>
+          <ul class="list-disc ml-6 space-y-2 text-gray-200 dark:text-gray-200 light:text-gray-700">
+            <li>Respect others at all times</li>
+            <li>Keep roleplay in-character when required</li>
+            <li>No exploits or cheating</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="join" class="py-24" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+          <h2 class="text-3xl font-bold mb-4">Join Us</h2>
+          <p class="text-gray-200 dark:text-gray-200 light:text-gray-700 mb-6">Connect with our community via Discord and hop into the server.</p>
+          <a href="#" class="inline-block bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 light:bg-red-500 light:hover:bg-red-600 text-black font-semibold px-6 py-3 rounded">Discord</a>
+        </div>
+      </section>
+
+      <footer class="py-8 text-center text-sm text-gray-400 dark:text-gray-400 light:text-gray-600">
+        <p>&copy; <span id="year"></span> Florida State Roleplay — FSRP</p>
+      </footer>
+    </main>
+
+    <script>
+      // Set current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Dark mode toggle
+      const themeToggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+      themeToggle.addEventListener('click', () => {
+        html.classList.toggle('light-mode');
+        // Update icon (optional: switch to moon for dark mode)
+      });
+
+      // Mobile menu toggle
+      const hamburger = document.querySelector('.hamburger');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', mobileMenu.classList.contains('open'));
+      });
+
+      // Initialize AOS
+      AOS.init();
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="discord-typing.js"></script>
+  </body>
+</html>
