@@ -1,43 +1,360 @@
-:root{--fsrp-red:#b91c1c;--liq:#0b0b0b}
-html,body{height:100%}
-html{scroll-behavior:smooth}
-body{
-  min-height:250vh;
-  margin:0;
-  background:linear-gradient(to bottom, var(--fsrp-red) 0%, var(--fsrp-red) 35%, var(--liq) 100%);
-  background-attachment:fixed;
-  color:#fff;
-  font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+:root {
+  --fsrp-red: #b91c1c;
+  --fsrp-red-light: #dc2626;
+  --liq: #0b0b0b;
 }
-header{box-shadow:0 1px 0 rgba(0,0,0,0.5)}
-section{background:transparent}
 
-/* Ensure links and buttons use red/black scheme */
-a{transition:all .15s ease}
-
-/* Discord button + typing animation */
-.discord-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:.5rem;
-  padding:.25rem .6rem;
-  border-radius:9999px;
-  border:1px solid var(--fsrp-red);
-  background:rgba(0,0,0,0.25);
-  color:var(--bg,white);
-  cursor:pointer;
-  transition:transform .12s ease,background .12s ease,box-shadow .12s ease,color .12s ease;
-  box-shadow:0 4px 10px rgba(0,0,0,0.25);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.discord-btn:active{transform:translateY(1px)}
-.discord-icon{width:24px;height:24px;flex:0 0 24px}
-.discord-text{
-  display:none; /* don't reserve space when hidden */
-  overflow:hidden;
-  white-space:nowrap;
-  opacity:0;
-  color:#ffffff; /* readable on dark background */
-  font-weight:600;
-}
-.discord-btn:hover{background:var(--fsrp-red);color:black;box-shadow:0 6px 18px rgba(185,28,28,0.25)}
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%);
+  background-attachment: fixed;
+  color: #fff;
+  font-family: 'Outfit', Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #b91c1c 0%, #7f1d1d 100%);
+  border-radius: 5px;
+  border: 2px solid #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%);
+}
+
+/* Logo Intro */
+#logo-intro {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 100%);
+}
+
+.intro-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.intro-logo {
+  animation: logoFloat 1.5s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.intro-logo img {
+  width: 100px;
+  height: 100px;
+  filter: drop-shadow(0 0 20px rgba(185, 28, 28, 0.5));
+}
+
+.intro-text {
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.intro-text span {
+  display: block;
+  background: linear-gradient(135deg, #fff 0%, #fca5a5 50%, #ef4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intro-loader {
+  width: 150px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 1s;
+}
+
+.loader-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #b91c1c, #ef4444, #b91c1c);
+  background-size: 200% 100%;
+  animation: loading 2s ease-in-out forwards;
+  border-radius: 3px;
+}
+
+@keyframes loading {
+  0% { width: 0; background-position: 100% 0; }
+  50% { width: 70%; background-position: 0 0; }
+  100% { width: 100%; background-position: 100% 0; }
+}
+
+/* Glass Card Effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Header */
+header {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(185, 28, 28, 0.5), transparent);
+}
+
+section {
+  background: transparent;
+}
+
+/* Links & Buttons */
+a {
+  transition: all 0.3s ease;
+}
+
+/* Discord Button */
+.discord-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(185, 28, 28, 0.5);
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.discord-btn:hover {
+  background: #5865F2;
+  border-color: #5865F2;
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+  transform: translateY(-2px);
+}
+
+.discord-btn:active {
+  transform: translateY(0);
+}
+
+.discord-icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}
+
+.discord-text {
+  display: none;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  font-weight: 600;
+}
+
+/* Discord Typing Animation */
+.discord-btn:hover .discord-text {
+  display: inline-block;
+  opacity: 1;
+}
+
+/* Game Rules Cards */
+.rule-card {
+  background: linear-gradient(145deg, rgba(185, 28, 28, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+  border: 1px solid rgba(185, 28, 28, 0.2);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.rule-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(185, 28, 28, 0.8), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rule-card:hover {
+  background: linear-gradient(145deg, rgba(185, 28, 28, 0.15) 0%, rgba(0, 0, 0, 0.4) 100%);
+  border-color: rgba(185, 28, 28, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(185, 28, 28, 0.15);
+}
+
+.rule-card:hover::before {
+  opacity: 1;
+}
+
+/* Discord Rules */
+.discord-rule {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: linear-gradient(145deg, rgba(59, 130, 246, 0.08) 0%, rgba(0, 0, 0, 0.2) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.discord-rule:hover {
+  background: linear-gradient(145deg, rgba(59, 130, 246, 0.12) 0%, rgba(0, 0, 0, 0.3) 100%);
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateX(8px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+}
+
+.rule-number {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(37, 99, 235, 0.3) 100%);
+  border-radius: 0.75rem;
+  font-weight: 700;
+  color: #60a5fa;
+  font-size: 1.1rem;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* Parallax Layers */
+.parallax-layer {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-text {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+/* Animation Keyframes */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #fff 0%, #fca5a5 50%, #ef4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rule-card {
+    padding: 1.25rem;
+  }
+  
+  .discord-rule {
+    padding: 1rem 1.25rem;
+  }
+  
+  .rule-number {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.9rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  .glass-card {
+    padding: 2rem 1.5rem !important;
+  }
+
+  #hero {
+    min-height: 100vh;
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rule-card {
+    padding: 1rem;
+  }
+  
+  .discord-rule {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .rule-number {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.85rem;
+  }
+
+  .intro-logo img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .intro-text .text-4xl {
+    font-size: 1.5rem !important;
+  }
+}

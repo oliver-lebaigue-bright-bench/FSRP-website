@@ -7,70 +7,521 @@
     <link rel="icon" href="images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
   <body class="text-white antialiased">
-    <header class="fixed w-full z-30 backdrop-blur bg-black/60">
+    <!-- Animated Logo Intro -->
+    <div id="logo-intro" class="fixed inset-0 z-[100] flex items-center justify-center bg-black">
+      <div class="intro-logo-container">
+        <div class="intro-logo">
+          <img src="images/logo.png" alt="FSRP" class="w-24 h-24 object-contain">
+        </div>
+        <div class="intro-text">
+          <span class="text-4xl font-extrabold tracking-wider">FSRP</span>
+          <span class="text-lg text-red-400 mt-2 block">Florida State Roleplay</span>
+        </div>
+        <div class="intro-loader">
+          <div class="loader-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden" id="animated-bg">
+      <div class="parallax-layer layer-1 absolute top-0 left-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-3xl animate-pulse" data-speed="0.2"></div>
+      <div class="parallax-layer layer-2 absolute bottom-0 right-1/4 w-96 h-96 bg-red-800/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;" data-speed="0.3"></div>
+      <div class="parallax-layer layer-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-900/10 rounded-full blur-3xl" data-speed="0.1"></div>
+      <div class="parallax-layer layer-4 absolute top-1/4 right-1/3 w-64 h-64 bg-red-500/10 rounded-full blur-3xl" data-speed="0.4"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 backdrop-blur-md bg-black/40 border-b border-white/5 transition-all duration-300" id="main-header">
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full flex items-center justify-center font-extrabold text-black shadow-md"><img src="images/logo.png" alt="FSRP Logo" class="w-full h-full object-contain"></div>
-          <span class="text-xl font-semibold tracking-wide">Florida State Roleplay</span>
+          <div class="w-10 h-10 rounded-full flex items-center justify-center font-extrabold text-black shadow-lg shadow-red-500/30">
+            <img src="images/logo.png" alt="FSRP Logo" class="w-full h-full object-contain">
+          </div>
+          <span class="text-xl font-bold tracking-wide bg-gradient-to-r from-white to-red-200 bg-clip-text text-transparent">Florida State Roleplay</span>
         </div>
-        <nav class="space-x-6 hidden md:flex items-center">
-          <a href="#about" class="text-red-400 hover:text-white">About</a>
-          <a href="#rules" class="text-red-400 hover:text-white">Rules</a>
-          <a href="#" class="discord-btn ml-2 flex items-center gap-2" aria-label="Discord link">
-            <img
-                src="images/discord.png"
-                alt="Discord"
-                class="w-6 h-6 object-contain"
-            >
+        
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="#about" class="text-gray-300 hover:text-red-400 transition-all duration-300 text-sm font-medium">About</a>
+          <a href="#rules" class="text-gray-300 hover:text-red-400 transition-all duration-300 text-sm font-medium">Rules</a>
+          <a href="https://www.roblox.com/communities/35936726/Florida-State-roleplay-Strict#!/about" target="_blank" class="flex items-center gap-2 text-gray-300 hover:text-red-400 transition-all duration-300 text-sm font-medium">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            Roblox
+          </a>
+          <a href="#" class="discord-btn flex items-center gap-2" aria-label="Discord link">
+            <img src="images/discord.png" alt="Discord" class="w-6 h-6 object-contain">
             <span class="discord-text">discord</span>
-        </a>
+          </a>
         </nav>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-white p-2" id="mobile-menu-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="md:hidden hidden bg-black/95 backdrop-blur-md" id="mobile-menu">
+        <div class="px-6 py-4 space-y-4">
+          <a href="#about" class="block text-gray-300 hover:text-red-400 py-2">About</a>
+          <a href="#rules" class="block text-gray-300 hover:text-red-400 py-2">Rules</a>
+          <a href="https://www.roblox.com/communities/35936726/Florida-State-roleplay-Strict#!/about" target="_blank" class="flex items-center gap-2 text-gray-300 hover:text-red-400 py-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            Roblox
+          </a>
+          <a href="#" class="flex items-center gap-2 text-gray-300 hover:text-red-400 py-2">
+            <img src="images/discord.png" alt="Discord" class="w-5 h-5"> Discord
+          </a>
+        </div>
       </div>
     </header>
 
     <main class="pt-24">
-      <section class="min-h-screen flex items-center justify-center">
-        <div class="text-center px-6">
-          <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight">Florida State Roleplay</h1>
-          <p class="mt-4 text-xl text-red-200 max-w-2xl mx-auto">An immersive ER:LC community — FSRP</p>
-          <a href="#join" class="mt-8 inline-block bg-red-600 hover:bg-red-700 text-black font-semibold px-6 py-3 rounded">Join Now</a>
+      <!-- Hero Section -->
+      <section class="min-h-screen flex items-center justify-center relative" id="hero">
+        <div class="text-center px-6 relative z-10">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/20 border border-red-500/30 text-red-300 text-sm font-medium mb-6 animate-fade-in">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            Live on ER:LC
+          </div>
+          <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-6 parallax-text" data-speed="0.05">
+            <span class="bg-gradient-to-r from-white via-red-100 to-red-300 bg-clip-text text-transparent">Florida State</span>
+            <br>
+            <span class="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">Roleplay</span>
+          </h1>
+          <p class="mt-4 text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed parallax-text" data-speed="0.03">An immersive ER:LC community focused on realism, teamwork, and unforgettable experiences. Join thousands of players in the Sunshine State.</p>
+          <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 parallax-text" data-speed="0.02">
+            <a href="#join" class="group relative px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 text-black font-bold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-600/40">
+              <span class="relative z-10">Join Now</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-red-500 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </a>
+            <a href="#rules" class="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/10 text-white font-semibold rounded-xl transition-all duration-300 backdrop-blur-sm">
+              View Rules
+            </a>
+          </div>
+          
+          <!-- Stats -->
+          <div class="mt-16 flex flex-wrap justify-center gap-8 parallax-text" data-speed="0.01">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-red-400 counter" data-target="500">0</div>
+              <div class="text-sm text-gray-400">Active Players</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-red-400 counter" data-target="50">0</div>
+              <div class="text-sm text-gray-400">Events Monthly</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-red-400">24/7</div>
+              <div class="text-sm text-gray-400">Server Online</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
         </div>
       </section>
 
-      <section id="about" class="py-24">
+      <!-- About Section -->
+      <section id="about" class="py-24 relative">
         <div class="max-w-4xl mx-auto px-6">
-          <h2 class="text-3xl font-bold mb-4">About FSRP</h2>
-          <p class="text-gray-200">We are a roleplay community focusing on realism, teamwork, and fun. Join our Discord and server to get started.</p>
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">
+              <span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">About FSRP</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-red-700 mx-auto rounded-full"></div>
+          </div>
+          <div class="glass-card p-8 rounded-2xl">
+            <p class="text-gray-200 text-lg leading-relaxed text-center">We are a roleplay community focusing on realism, teamwork, and fun. Join our Discord and server to get started. Experience the best of Emergency Response: Lake County with our dedicated community of roleplayers.</p>
+            <div class="mt-8 grid md:grid-cols-3 gap-6">
+              <div class="text-center p-4">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-red-600/20 flex items-center justify-center text-2xl">🎮</div>
+                <h3 class="font-semibold text-white mb-1">Immersive Gameplay</h3>
+                <p class="text-sm text-gray-400">Realistic roleplay scenarios</p>
+              </div>
+              <div class="text-center p-4">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-red-600/20 flex items-center justify-center text-2xl">🤝</div>
+                <h3 class="font-semibold text-white mb-1">Active Community</h3>
+                <p class="text-sm text-gray-400">Friendly players & staff</p>
+              </div>
+              <div class="text-center p-4">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-red-600/20 flex items-center justify-center text-2xl">🎉</div>
+                <h3 class="font-semibold text-white mb-1">Weekly Events</h3>
+                <p class="text-sm text-gray-400">Exciting competitions</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="rules" class="py-24">
-        <div class="max-w-4xl mx-auto px-6">
-          <h2 class="text-3xl font-bold mb-4">Rules</h2>
-          <ul class="list-disc ml-6 space-y-2 text-gray-200">
-            <li>Respect others at all times</li>
-            <li>Keep roleplay in-character when required</li>
-            <li>No exploits or cheating</li>
-          </ul>
+      <!-- Rules Section -->
+      <section id="rules" class="py-24 relative">
+        <div class="max-w-5xl mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">
+              <span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Server Rules</span>
+            </h2>
+            <p class="text-gray-400 max-w-xl mx-auto">Please read our rules carefully to ensure a great experience for everyone in our community.</p>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-red-700 mx-auto rounded-full mt-4"></div>
+          </div>
+          
+          <!-- Game Rules Section -->
+          <div class="mb-16">
+            <h3 class="text-2xl font-bold mb-8 text-red-300 flex items-center justify-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-red-600/20 flex items-center justify-center">🎮</span> 
+              Game Rules (ERLC Private Server)
+            </h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <!-- General Roleplay Conduct -->
+              <div class="rule-card group">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-lg bg-red-600/20 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">🚨</div>
+                  <h4 class="font-bold text-red-400 text-lg">General Roleplay</h4>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Fail RP is prohibited; actions must reflect realistic behavior
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    RDM/VDM disallowed without valid roleplay justification
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    NLR: After death/arrest, prior scenarios must be forgotten
+                  </li>
+                </ul>
+              </div>
+              
+              <!-- Driving Standards -->
+              <div class="rule-card group">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-lg bg-red-600/20 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">🚗</div>
+                  <h4 class="font-bold text-red-400 text-lg">Driving Standards</h4>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Follow traffic laws and drive responsibly
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Yield to emergency vehicles
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Do not provoke law enforcement
+                  </li>
+                </ul>
+              </div>
+              
+              <!-- Weapons Protocol -->
+              <div class="rule-card group">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-lg bg-red-600/20 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">🔫</div>
+                  <h4 class="font-bold text-red-400 text-lg">Weapons Protocol</h4>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Avoid open carry without purpose
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Robbery cooldown: 5 minutes
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Bank heists require staff approval
+                  </li>
+                </ul>
+              </div>
+              
+              <!-- Law Enforcement -->
+              <div class="rule-card group">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-lg bg-red-600/20 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">👮</div>
+                  <h4 class="font-bold text-red-400 text-lg">Law Enforcement</h4>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Comply with detain requests
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    No cuff rushing without proper roleplay
+                  </li>
+                </ul>
+              </div>
+              
+              <!-- Team Guidelines -->
+              <div class="rule-card group">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-lg bg-red-600/20 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">👥</div>
+                  <h4 class="font-bold text-red-400 text-lg">Team Guidelines</h4>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Restricted roles require departmental affiliation
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Do not interfere with others' roleplay
+                  </li>
+                </ul>
+              </div>
+              
+              <!-- Avatar & Behavior -->
+              <div class="rule-card group">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-10 h-10 rounded-lg bg-red-600/20 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">🧍</div>
+                  <h4 class="font-bold text-red-400 text-lg">Avatar & Behavior</h4>
+                </div>
+                <ul class="space-y-2 text-gray-300">
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Avatars must be realistic
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-red-400 mt-1">▹</span>
+                    Harassment & hate speech strictly prohibited
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Discord Rules Section -->
+          <div>
+            <h3 class="text-2xl font-bold mb-8 text-blue-300 flex items-center justify-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-blue-600/20 flex items-center justify-center">💬</span>
+              Discord Rules
+            </h3>
+            
+            <div class="space-y-4">
+              <div class="discord-rule group">
+                <span class="rule-number">1</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-blue-400 text-lg mb-1">Respect Everyone 🤝</h4>
+                  <p class="text-gray-300">Treat all members with kindness and courtesy. Disagreements are okay—disrespect is not.</p>
+                </div>
+              </div>
+              
+              <div class="discord-rule group">
+                <span class="rule-number">2</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-blue-400 text-lg mb-1">Swearing vs. Cursing 💬</h4>
+                  <p class="text-gray-300">Swearing is allowed in casual conversation. Cursing (directed insults, threats, or hateful language) is strictly prohibited.</p>
+                </div>
+              </div>
+              
+              <div class="discord-rule group">
+                <span class="rule-number">3</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-blue-400 text-lg mb-1">No Harassment or Bullying 🚫</h4>
+                  <p class="text-gray-300">Don't target or insult others. Repeated unwanted behavior will result in moderation action.</p>
+                </div>
+              </div>
+              
+              <div class="discord-rule group">
+                <span class="rule-number">4</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-blue-400 text-lg mb-1">Keep It Friendly 😁</h4>
+                  <p class="text-gray-300">This is a place to make friends, not enemies. Avoid toxic behavior, excessive negativity, or drama.</p>
+                </div>
+              </div>
+              
+              <div class="discord-rule group">
+                <span class="rule-number">5</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-blue-400 text-lg mb-1">Respect Boundaries 🚧</h4>
+                  <p class="text-gray-300">No spamming or sharing private information without permission. Respect others' privacy and comfort zones.</p>
+                </div>
+              </div>
+              
+              <div class="discord-rule group">
+                <span class="rule-number">6</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-blue-400 text-lg mb-1">Use Channels Appropriately 📢</h4>
+                  <p class="text-gray-300">Stick to the topic of each channel. Don't derail conversations or flood chats.</p>
+                </div>
+              </div>
+              
+              <div class="discord-rule group">
+                <span class="rule-number">7</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-blue-400 text-lg mb-1">Do not ping staff members 📵</h4>
+                  <p class="text-gray-300">Avoid pinging staff members unless absolutely necessary.</p>
+                </div>
+              </div>
+              
+              <div class="discord-rule group">
+                <span class="rule-number">8</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-blue-400 text-lg mb-1">Follow Discord's Terms of Service 📜</h4>
+                  <p class="text-gray-300">No illegal content, NSFW material, or anything that violates Discord's rules.</p>
+                </div>
+              </div>
+              
+              <div class="discord-rule group">
+                <span class="rule-number">9</span>
+                <div class="flex-1">
+                  <h4 class="font-bold text-blue-400 text-lg mb-1">No Staff Pings 📞</h4>
+                  <p class="text-gray-300">Staff members should only be contacted through appropriate channels.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="join" class="py-24">
+      <!-- Join Section -->
+      <section id="join" class="py-24 relative">
         <div class="max-w-4xl mx-auto px-6 text-center">
-          <h2 class="text-3xl font-bold mb-4">Join Us</h2>
-          <p class="text-gray-200 mb-6">Connect with our community via Discord and hop into the server.</p>
-          <a href="#" class="inline-block bg-red-600 hover:bg-red-700 text-black font-semibold px-6 py-3 rounded">Discord</a>
+          <div class="glass-card p-12 rounded-3xl">
+            <h2 class="text-4xl font-bold mb-4">Join Our Community</h2>
+            <p class="text-gray-300 mb-8 text-lg">Connect with thousands of players and experience the best roleplay community on ER:LC.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="#" class="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/40">
+                <img src="images/discord.png" alt="Discord" class="w-6 h-6">
+                Join Discord
+              </a>
+              <a href="https://www.roblox.com/communities/35936726/Florida-State-roleplay-Strict#!/about" target="_blank" class="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-400 hover:to-red-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                Play on Roblox
+              </a>
+            </div>
+            <p class="mt-6 text-sm text-gray-500">Click to join our Discord server and start playing!</p>
+          </div>
         </div>
       </section>
 
-      <footer class="py-8 text-center text-sm text-gray-400">
-        <p>&copy; <span id="year"></span> Florida State Roleplay — FSRP</p>
+      <!-- Footer -->
+      <footer class="py-8 text-center text-sm text-gray-500 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-4">
+          <p>&copy; <span id="year"></span> Florida State Roleplay — FSRP. All rights reserved.</p>
+          <div class="flex items-center gap-4">
+            <a href="#" class="flex items-center gap-2 text-gray-400 hover:text-indigo-400 transition-colors">
+              <img src="images/discord.png" alt="Discord" class="w-5 h-5">
+              <span>Discord</span>
+            </a>
+            <a href="https://www.roblox.com/communities/35936726/Florida-State-roleplay-Strict#!/about" target="_blank" class="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+              <span>Roblox</span>
+            </a>
+          </div>
+        </div>
       </footer>
     </main>
 
     <script>
+      // Logo Intro Animation
+      window.addEventListener('load', function() {
+        const intro = document.getElementById('logo-intro');
+        const loaderBar = document.querySelector('.loader-bar');
+        
+        // Animate loader bar
+        setTimeout(() => {
+          loaderBar.style.width = '100%';
+        }, 100);
+        
+        // Hide intro after animation
+        setTimeout(() => {
+          intro.style.opacity = '0';
+          intro.style.transition = 'opacity 0.5s ease';
+          setTimeout(() => {
+            intro.style.display = 'none';
+          }, 500);
+        }, 2500);
+      });
+
+      // Parallax Effect
+      window.addEventListener('scroll', function() {
+        const scrollY = window.scrollY;
+        
+        // Parallax background layers
+        document.querySelectorAll('.parallax-layer').forEach(layer => {
+          const speed = parseFloat(layer.dataset.speed) || 0.1;
+          layer.style.transform = `translateY(${scrollY * speed}px)`;
+        });
+        
+        // Parallax text
+        document.querySelectorAll('.parallax-text').forEach(text => {
+          const speed = parseFloat(text.dataset.speed) || 0.05;
+          text.style.transform = `translateY(${scrollY * speed}px)`;
+        });
+      });
+
+      // Animated Counter
+      const counters = document.querySelectorAll('.counter');
+      const animateCounters = () => {
+        counters.forEach(counter => {
+          const target = parseInt(counter.dataset.target);
+          const current = parseInt(counter.textContent);
+          const increment = target / 50;
+          
+          if (current < target) {
+            counter.textContent = Math.ceil(current + increment);
+          }
+        });
+      };
+
+      // Start counter animation when in view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setInterval(animateCounters, 50);
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+
+      const statsSection = document.querySelector('.counter');
+      if (statsSection) {
+        observer.observe(statsSection);
+      }
+
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close mobile menu when clicking a link
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+
+      // Header scroll effect
+      window.addEventListener('scroll', () => {
+        const header = document.getElementById('main-header');
+        if (window.scrollY > 50) {
+          header.classList.add('bg-black/80');
+          header.classList.remove('bg-black/40');
+        } else {
+          header.classList.remove('bg-black/80');
+          header.classList.add('bg-black/40');
+        }
+      });
+
+      // Update year
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
     <script src="discord-typing.js"></script>
